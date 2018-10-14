@@ -1,8 +1,7 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 import PokemonTable from '../../components/Pokemon/Table'
-
 
 export default class ScreenBase extends React.Component {
     render() {

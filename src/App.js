@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
-import logo from './logo.svg'
+import React from 'react'
 import './App.css'
 import 'antd/dist/antd.css'
 
 import ScreenBase from './screens/Base/ScreenBase'
 
-
-class App extends Component {
+class App extends React.Component {
     render() {
         return (
             <ScreenBase/>

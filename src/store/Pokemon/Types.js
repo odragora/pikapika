@@ -1,8 +1,8 @@
-/* 
+/*
     A model for Pokemon types.
     The list of Pokemon types is taken from the API and stored here.
     Also we use it to know what types are already fetched
-    and what is the status of type fetch operation.  
+    and what is the status of type fetch operation.
 */
 
 export const PokemonTypes = {
@@ -55,7 +55,7 @@ export const PokemonTypes = {
                         isFetched: false,
                         isFetching: true,
                         error: null,
-                    }
+                    },
                 },
             }
         },
@@ -69,7 +69,7 @@ export const PokemonTypes = {
                         isFetched: true,
                         isFetching: false,
                         error: null,
-                    }
+                    },
                 },
             }
         },
@@ -83,7 +83,7 @@ export const PokemonTypes = {
                         isFetched: false,
                         isFetching: false,
                         error: payload.error,
-                    }
+                    },
                 },
             }
         },
@@ -95,20 +95,20 @@ export const PokemonTypes = {
             try {
                 let result = await fetch(`https://pokeapi.co/api/v2/type/`)
                 if (!result.ok) {
-                    dispatch.PokemonTypes.fetchListFailed({error: result.status})
+                    dispatch.PokemonTypes.fetchListFailed({ error: result.status })
                     throw new Error(result.status)
                 } else {
                     result = await result.json()
-                    dispatch.PokemonTypes.fetchListCompleted({types: result.results})
+                    dispatch.PokemonTypes.fetchListCompleted({ types: result.results })
                     return result
                 }
-            } catch(error) {
-                dispatch.PokemonTypes.fetchListFailed({error})
+            } catch (error) {
+                dispatch.PokemonTypes.fetchListFailed({ error })
                 throw new Error(error)
             }
         },
         async fetchType(payload, rootState) {
-            dispatch.PokemonTypes.fetchTypeStart({id: payload.id})
+            dispatch.PokemonTypes.fetchTypeStart({ id: payload.id })
             try {
                 let result = await fetch(`https://pokeapi.co/api/v2/type/${payload.id}/`)
                 if (!result.ok) {
@@ -116,14 +116,14 @@ export const PokemonTypes = {
                     throw new Error(result.status)
                 } else {
                     result = await result.json()
-                    dispatch.PokemonTypes.fetchTypeCompleted({id: payload.id})
-                    dispatch.PokemonEntries.typesUpdate({name: payload.id, data: result.pokemon})
+                    dispatch.PokemonTypes.fetchTypeCompleted({ id: payload.id })
+                    dispatch.PokemonEntries.typesUpdate({ name: payload.id, data: result.pokemon })
                     return result
                 }
-            } catch(error) {
-                dispatch.PokemonTypes.fetchTypeFailed({error})
+            } catch (error) {
+                dispatch.PokemonTypes.fetchTypeFailed({ error })
                 throw new Error(error)
             }
-        }
-    })
+        },
+    }),
 }

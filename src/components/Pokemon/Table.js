@@ -1,7 +1,7 @@
 import React from 'react'
-import memoize from "memoize-one"
+import memoize from 'memoize-one'
 
-import {Table, Avatar, Input, Tag, Spin} from 'antd'
+import { Table, Avatar, Input, Tag } from 'antd'
 
 const TYPES_COLORS = {
     normal: '#e0e0e0',
@@ -24,7 +24,6 @@ const TYPES_COLORS = {
     fairy: '#ffa4a2',
 }
 
-
 export default class PokemonTable extends React.Component {
     state = {
         nameFilter: '',
@@ -43,9 +42,9 @@ export default class PokemonTable extends React.Component {
         return this.props.pokemonList.isFetched && this.props.pokemonTypes.isFetched
     }
     getIsLoading() {
-        return this.props.pokemonList.isFetching 
-        || this.props.pokemonTypes.isFetching 
-        || this.state.isTypeFetching
+        return this.props.pokemonList.isFetching ||
+        this.props.pokemonTypes.isFetching ||
+        this.state.isTypeFetching
     }
     getFiltered = memoize((items, entries, nameFilter, typeFilter) => {
         let result = items
@@ -79,7 +78,7 @@ export default class PokemonTable extends React.Component {
             item.key = item.name
             item.details = entries[item.name]
         }
-        // Dispatch 'fetch entry' for each item in the subset, if an entry isn't fetched yet 
+        // Dispatch 'fetch entry' for each item in the subset, if an entry isn't fetched yet
         const entriesToFetch = []
         for (let item of paginated) {
             const entry = entries[item.name]
@@ -87,21 +86,21 @@ export default class PokemonTable extends React.Component {
                 entriesToFetch.push(item.name)
             }
         }
-        this.props.fetchEntries({ids: entriesToFetch})
+        this.props.fetchEntries({ ids: entriesToFetch })
 
         return filtered
     })
     handleTableChange = (pagination, filters) => {
         this.setState(prevState => {
-            let {isTypeFetching} = prevState
+            let { isTypeFetching } = prevState
             let typeFilter = null
             if (filters['details.data.types']) {
                 typeFilter = filters['details.data.types'][0]
             }
             if (typeFilter && prevState.typeFilter !== typeFilter) {
                 isTypeFetching = true
-                this.props.fetchType({id: typeFilter})
-                    .then(() => this.setState({isTypeFetching: false}))
+                this.props.fetchType({ id: typeFilter })
+                    .then(() => this.setState({ isTypeFetching: false }))
             }
 
             return {
@@ -120,7 +119,7 @@ export default class PokemonTable extends React.Component {
             <div>
                 <Input.Search
                     placeholder={'Start typing name'}
-                    onChange={e => this.setState({nameFilter: e.target.value})}
+                    onChange={e => this.setState({ nameFilter: e.target.value })}
                 />
                 <Table
                     loading={this.getIsLoading()}
@@ -142,23 +141,23 @@ export default class PokemonTable extends React.Component {
                         {
                             title: 'Types',
                             dataIndex: 'details.data.types',
-                            render: types => this.getIsReady() 
-                            ? (
-                                <div>
-                                    {Object.values(types)
-                                        .filter(item => item)
-                                        .sort((a, b) => a.slot > b.slot)
-                                        .map(
-                                            item => item 
-                                                ? <TypeTag name={item.type.name} key={item.slot} />
-                                                : null
-                                        )
-                                    }
-                                </div>
-                            )
-                            : null,
+                            render: types => this.getIsReady()
+                                ? (
+                                    <div>
+                                        {Object.values(types)
+                                            .filter(item => item)
+                                            .sort((a, b) => a.slot > b.slot)
+                                            .map(
+                                                item => item
+                                                    ? <TypeTag name={item.type.name} key={item.slot} />
+                                                    : null
+                                            )
+                                        }
+                                    </div>
+                                )
+                                : null,
                             filters: Object.entries(this.props.pokemonTypes.items).map(item => ({
-                                text: item[0], value: item[0]
+                                text: item[0], value: item[0],
                             })),
                             filterMultiple: false,
                         },
@@ -169,7 +168,7 @@ export default class PokemonTable extends React.Component {
                                     title: 'ATK',
                                     dataIndex: 'details.data.stats.attack',
                                     key: 'atk',
-                                    render: data => data 
+                                    render: data => data
                                         ? `${data.base_stat} [${data.effort} EV]`
                                         : null
                                     ,
@@ -178,7 +177,7 @@ export default class PokemonTable extends React.Component {
                                     title: 'DEF',
                                     dataIndex: 'details.data.stats.defense',
                                     key: 'def',
-                                    render: data => data 
+                                    render: data => data
                                         ? `${data.base_stat} [${data.effort} EV]`
                                         : null
                                     ,
@@ -187,7 +186,7 @@ export default class PokemonTable extends React.Component {
                                     title: 'SP-ATK',
                                     dataIndex: 'details.data.stats.special-attack',
                                     key: 'spatk',
-                                    render: data => data 
+                                    render: data => data
                                         ? `${data.base_stat} [${data.effort} EV]`
                                         : null
                                     ,
@@ -196,7 +195,7 @@ export default class PokemonTable extends React.Component {
                                     title: 'SP-DEF',
                                     dataIndex: 'details.data.stats.special-defense',
                                     key: 'spdef',
-                                    render: data => data 
+                                    render: data => data
                                         ? `${data.base_stat} [${data.effort} EV]`
                                         : null
                                     ,
@@ -205,7 +204,7 @@ export default class PokemonTable extends React.Component {
                                     title: 'HP',
                                     dataIndex: 'details.data.stats.hp',
                                     key: 'hp',
-                                    render: data => data 
+                                    render: data => data
                                         ? `${data.base_stat} [${data.effort} EV]`
                                         : null
                                     ,
@@ -214,7 +213,7 @@ export default class PokemonTable extends React.Component {
                                     title: 'SPD',
                                     dataIndex: 'details.data.stats.speed',
                                     key: 'spd',
-                                    render: data => data 
+                                    render: data => data
                                         ? `${data.base_stat} [${data.effort} EV]`
                                         : null
                                     ,
@@ -225,20 +224,19 @@ export default class PokemonTable extends React.Component {
                     dataSource={this.getData(
                         !this.getIsReady() || this.getIsLoading(),
                         this.props.pokemonList.items, this.props.pokemonEntries,
-                        this.state.pagination.size, this.state.pagination.page, 
+                        this.state.pagination.size, this.state.pagination.page,
                         this.state.nameFilter, this.state.typeFilter
                     )}
                     onChange={this.handleTableChange}
-                    pagination={{showSizeChanger: true}}
+                    pagination={{ showSizeChanger: true }}
                 />
             </div>
         )
     }
 }
 
-
 const TypeTag = (props) => {
-    const {name} = props
+    const { name } = props
     return (
         <Tag color={TYPES_COLORS[name]} style={{
             cursor: 'default',

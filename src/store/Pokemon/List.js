@@ -1,7 +1,7 @@
-/* 
-    A model for a list of Pokemon names. 
+/*
+    A model for a list of Pokemon names.
     They are being used to fetch individual entries on demand.
-    It is separated the from the Entries model to keep the code 
+    It is separated the from the Entries model to keep the code
     easy to read and to minimize nesting in the reducer.
     When the list of Pokemon names is fetched, we create an Entry for each name.
  */
@@ -51,16 +51,16 @@ export const PokemonList = {
                     dispatch.PokemonEntries.initialPopulate(data.results)
                     return dispatch.PokemonList.fetchCompleted(
                         data.results
-                            .map((item, idx) => ({id: idx + 1, name: item.name}))
+                            .map((item, idx) => ({ id: idx + 1, name: item.name }))
                     )
                 } else {
                     dispatch.PokemonList.fetchFailed('Network error')
                     throw new Error('Network error')
                 }
-            } catch(e) {
+            } catch (e) {
                 dispatch.PokemonList.fetchFailed(e)
                 throw new Error(e)
             }
-        }
-    })
+        },
+    }),
 }
