@@ -9,9 +9,11 @@ Pokedex web app built with React &amp; Redux.
 What's inside, why and how it works.
 ### General
 I follow most of the approaches described in this article: https://hackernoon.com/structuring-projects-and-naming-components-in-react-1261b6e18d76.
+
 Also most of the time I'm not using `constructor` in React components to keep code simple, another article: https://hackernoon.com/the-constructor-is-dead-long-live-the-constructor-c10871bea599 
 ### React
 All the components in this application can be roughly divided into two types: presentational and container components.
+
 An article about this concept: https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
 
 Presentational components are stored in `src\components`. They are designed to display the UI.
@@ -26,10 +28,13 @@ In this project I'm using [antd](https://ant.design/), a React UI library.
 There is an `index.js` file in `src\store` root where every model is imported and the store is initialized.
 #### Data structure
 All Pokémon data is being loaded from [PokéAPI](https://pokeapi.co/).
+
 There are a few comments in the `models` to explain the reason behind certain decisions.
+
 NOTE: at the time of development a part of PokéAPI functionality — pagination — is broken: https://github.com/PokeAPI/pokeapi/issues/372.
 ### Linting and rules
 The linting is based on [Standard ESLint config](https://github.com/standard/eslint-config-standard).
+
 I've made a few adjustments though.
 * Indent is 4 spaces to make the code more readable.
 * No space before function parenthesis.
