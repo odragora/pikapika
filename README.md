@@ -13,7 +13,6 @@ I follow most of the approaches described in this article: https://hackernoon.co
 Also most of the time I'm not using `constructor` in React components to keep code simple, another article: https://hackernoon.com/the-constructor-is-dead-long-live-the-constructor-c10871bea599 
 ### React
 All the components in this application can be roughly divided into two types: presentational and container components.
-
 An article about this concept: https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0
 
 Presentational components are stored in `src\components`. They are designed to display the UI.
