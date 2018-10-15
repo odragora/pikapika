@@ -1,6 +1,9 @@
 # pikapika
 Pokedex web app built with React &amp; Redux.
 
+## Demo
+https://pikapika-6efaf.firebaseapp.com
+
 ## How to run it
 * `npm install` or `yarn install`
 * `npm run` or `yarn run` — init local dev server, your browser will open the main page on localhost
